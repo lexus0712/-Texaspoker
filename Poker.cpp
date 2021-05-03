@@ -4,11 +4,10 @@ Poker::Poker()
 	pokercard = 0;
 	cardcolor = 0;
 }
-Poker::Poker(int cardnum)
+Poker::Poker(int newpokercard)
 {
-	//srand(time(0));
-	//pokercard =  1 + (rand() % 52);
-	cardcolor = pokercard / 13;
+	cardcolor = newpokercard / 13;
+	pokercard = newpokercard;
 }
 void Poker::setPokercard(int newpokercard)
 {

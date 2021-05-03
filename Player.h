@@ -3,10 +3,12 @@
 #include <iostream>
 #include <iomanip>
 #include"Poker.h"
+#include"Computer.h"
 using namespace std;
 class Player
 {
 private:
+	int high;
 	Poker firstcard;
 	Poker secondcard;
 	int WinOrLoseValue;
@@ -20,6 +22,6 @@ public:
 	Poker getsecondcard();
 	int getWinOrLoseValue();
 	int Compare(Poker publicArray[5]);
-	int Compare2(Poker publicArray[5], int);
+	int Compare2(Poker publicArray[5], int, Computer &c1);
 };
 #endif
