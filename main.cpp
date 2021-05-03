@@ -146,8 +146,13 @@ int main()
 		{
 			cout << bestArray[a].getPokercard() << endl;;
 		}
-		system("pause");
-		p1.setWinOrLoseValue(p1.Compare(bestArray));//玩家1得到的牌形
+		int whichcardarray[14] = { 0 };
+		for (int a = 0; a < 5; a++)//看數字哪些有幾張
+		{
+			int y = bestArray[a].getPokercard();
+			whichcardarray[y]++;
+		}
+		p1.setWinOrLoseValue(p1.Compare(bestArray, whichcardarray));//玩家1得到的牌形
 		c1.setCwinOrLoseValue(c1.CCompare(publiccard));//電腦得到的牌形
 		if (p1.getWinOrLoseValue() > c1.getCwinOrLoseValue())
 		{
@@ -167,7 +172,7 @@ int main()
 		}
 		if (p1.getWinOrLoseValue() == c1.getCwinOrLoseValue())//當相同牌形時比大小
 		{
-			wlv=p1.Compare2(bestArray, p1.getWinOrLoseValue(),c1);
+			wlv=p1.Compare2(bestArray, p1.getWinOrLoseValue(),c1, whichcardarray);
 			if (wlv == 1)cout << "玩家贏" << endl;
 			else if (wlv == 0)cout << "電腦贏" << endl;
 			else if (wlv == 2)cout << "平手" << endl;

@@ -35,13 +35,12 @@ int Player::getWinOrLoseValue()
 {
 	return WinOrLoseValue;
 }
-int Player::Compare(Poker bestArray[5])
+int Player::Compare(Poker bestArray[5],int whichcardarray[14])
 {
 	int whichcolor = 0;
 	Poker temp=0;
 	bool straight=false;
 	int total[4] = { 0 };
-	int whichcardarray[14] = { 0 };
 	int straightcorrect=0;
 	int repeatcard[8] = { 0 };
 	for (int a = 0; a < 7; a++)//算重複的花色
@@ -84,10 +83,6 @@ int Player::Compare(Poker bestArray[5])
 		{
 			whichcolor = n;
 		}
-	}
-	for (int a = 0; a < 7; a++)//看數字那些有幾張
-	{
-		int y = bestArray[a].getPokercard();
 	}
 	for (int l = 1; l < 14; l++)//看數字重複有幾張
 	{
@@ -163,16 +158,11 @@ int Player::Compare(Poker bestArray[5])
 	}
 
 }
-int Player::Compare2(Poker bestArray[5], int WinOrLoseValue1, Computer& c1)
+int Player::Compare2(Poker bestArray[5], int WinOrLoseValue1, Computer& c1,int whichcardarray[14])
 {		
-	int whichcardarray[14] = { 0 };
 	int max1 = 0;
 	int max2 = 0;
 	int max5 = 0;
-	for (int a = 0; a < 7; a++)//看數字那些有幾張
-	{
-		whichcardarray[bestArray[a].getPokercard()]++;
-	}
 	switch (WinOrLoseValue1)
 	{
 	case 1://比較誰的highcard大
@@ -286,7 +276,7 @@ int Player::Compare2(Poker bestArray[5], int WinOrLoseValue1, Computer& c1)
 		{
 			if (bestArray[l].getPokercard() >= max5)
 			{
-				max5 == bestArray[l].getPokercard();
+				max5 = bestArray[l].getPokercard();
 			}
 		}
 		if (max5 > c1.getthehigh())return 1;//玩家贏

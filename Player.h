@@ -8,7 +8,6 @@ using namespace std;
 class Player
 {
 private:
-	int high;
 	Poker firstcard;
 	Poker secondcard;
 	int WinOrLoseValue;
@@ -21,7 +20,7 @@ public:
 	Poker getFirstcard();
 	Poker getsecondcard();
 	int getWinOrLoseValue();
-	int Compare(Poker publicArray[5]);
-	int Compare2(Poker publicArray[5], int, Computer &c1);
+	int Compare(Poker publicArray[5],int whichcardarray[14]);
+	int Compare2(Poker publicArray[5], int, Computer &c1, int whichcardarray[14]);
 };
 #endif
