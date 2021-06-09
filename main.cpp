@@ -2,68 +2,21 @@
 #include <cstdlib>
 #include <iomanip>
 #include <ctime>
+#include <string>
 #include"Player.h"
 #include"Computer.h"
 using namespace std;
-void cardname1(int cardname)//µP§Îªº¦W¦r
-{
-	switch (cardname)
-	{
-	case 1:
-		cout << "highcard" << endl;
-		break;
-	case 2:
-		cout << "¤@¹ï" << endl;
-		break;
-	case 3:
-		cout << "¨â¹ï" << endl;
-		break;
-	case 4:
-		cout << "¤T±ø" << endl;
-		break;
-	case 5:
-		cout << "¶¶¤l" << endl;
-		break;
-	case 6:
-		cout << "¦Pªá" << endl;
-		break;
-	case 7:
-		cout << "¸¬Äª" << endl;
-		break;
-	case 8:
-		cout << "ÅK¤ä" << endl;
-		break;
-	case 9:
-		cout << "¦Pªá¶¶" << endl;
-		break;
-	case 10:
-		cout << "¬Ó®a¦Pªá¶¶" << endl;
-		break;
-	}
-}
-void pokercolor(int color)//ªá¦â
-{
-		switch (color)
-		{
-		case 0:
-			cout << "±öªá";
-			break;
-		case 1:
-			cout << "¤è¶ô";
-			break;
-		case 2:
-			cout << "·R¤ß";
-			break;
-		case 3:
-			cout << "¶Â®ç";
-			break;
-		}
-}
 int main()
 {
+
+	string cardsname[] = { "highcard" ,"ä¸€å°","å…©å°","ä¸‰æ¢" ,"é †å­", "åŒèŠ±", "è‘«è˜†", "éµæ”¯" ,"åŒèŠ±é †" , "çš‡å®¶åŒèŠ±é †" };
+	//ç‰Œå½¢çš„åå­—
+	string suits[] = { "æ¢…èŠ±", "æ–¹å¡Š", "æ„›å¿ƒ", "é»‘æ¡ƒ" };
+	string ranks[] = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9",
+	  "10", "Jack", "Queen", "King" };
 	int wlv = 0;
 	int bet;
-	cout << "¿é¤J¼Æ¦r¹CÀ¸¶}©l©Î«ö0µ²§ô"<<endl;
+	cout << "è¼¸å…¥æ•¸å­—éŠæˆ²é–‹å§‹æˆ–æŒ‰0çµæŸ"<<endl;
 	cin >> bet;
 	while (bet != 0)
 	{
@@ -71,29 +24,39 @@ int main()
 		Poker bestArray[5] = {};
 		int newpokercard = 0;
 		srand(time(0));
+		//const int NUMBER_OF_CARDS = 52;
+		//int num[NUMBER_OF_CARDS]={0};
 		int num[10] = {0};
 		int j;
-		for (int i = 0; i < 10; i++) {//ÀH¾÷¥Í¦¨1~52¤§¶¡ªº¾ã¼Æ¶Ã¼Æ¨Ã®ø°£­«½Æ­«½Æ
+		/*for (int i = 0; i < NUMBER_OF_CARDS; i++)
+		{
+			num[i] = i;
+		}
+
+		for (int i = 0; i < NUMBER_OF_CARDS; i++)
+		{
+			int index = rand() % NUMBER_OF_CARDS;
+			int temp = num[i];
+			num[i] = num[index];
+			num[index] = temp;
+		}*/
+			for (int i = 0; i < 10; i++) {//éš¨æ©Ÿç”Ÿæˆ1~52ä¹‹é–“çš„æ•´æ•¸äº‚æ•¸ä¸¦æ¶ˆé™¤é‡è¤‡é‡è¤‡
 			do {
 				num[i] = 1 + (rand() % 52);  
-				for ( j = 0; j <i; j++)//¨Ï¥Înum[j-1]§@¬°¤§«e¤w¥Í¦¨ªº°}¦C¦¨­û¡A¨Ã¥B»P·í«e·s¥Í¦¨ªºnum[i-1]¤ñ¸û¬O§_­«½Æ
+				for ( j = 0; j <i; j++)//ä½¿ç”¨num[j-1]ä½œç‚ºä¹‹å‰å·²ç”Ÿæˆçš„é™£åˆ—æˆå“¡ï¼Œä¸¦ä¸”èˆ‡ç•¶å‰æ–°ç”Ÿæˆçš„num[i-1]æ¯”è¼ƒæ˜¯å¦é‡è¤‡
 				{    
-					if (num[i] == num[j]) //§PÂ_¦³¨S¦³¸ò«e­±¤@¼Ë
+					if (num[i] == num[j]) //åˆ¤æ–·æœ‰æ²’æœ‰è·Ÿå‰é¢ä¸€æ¨£
 					{
 						i--;
-						break;   //­Y¦b¤ñ¹ï¹Lµ{¹J¨ì­«½Æ¡A«hbreakÂ÷¶}¥Í¦¨·s¶Ã¼Æ
+						break;   //è‹¥åœ¨æ¯”å°éŽç¨‹é‡åˆ°é‡è¤‡ï¼Œå‰‡breaké›¢é–‹ç”Ÿæˆæ–°äº‚æ•¸
 					}
 				}   
 			} while (j != i);
 		}
-		//for (int r = 0; r < 10; r++)//³Ð¥dµPª«¥ó
-		//{
-		//	cout << num[r] << endl;
-		//}
 		Poker p1card[2];
 		Poker c1card[2];
 		Poker publiccard[5];
-		for (int r = 0; r < 2; r++)//³Ð¥dµPª«¥ó
+		for (int r = 0; r < 2; r++)//å‰µå¡ç‰Œç‰©ä»¶
 		{
 			p1card[r].setPokercard(1 + num[r]%13);
 			p1card[r].setCardcolor(num[r] / 13);
@@ -112,91 +75,95 @@ int main()
 		int WinOrLoseValue2 = 0;
 		Player p1(p1card[0], p1card[1], WinOrLoseValue1);
 		Computer c1(c1card[0], c1card[1], WinOrLoseValue2,0);
-		cout << "±zªº¤âµP¬° ";//§AªºÅã¥Ü¤âµP
+		cout << "æ‚¨çš„æ‰‹ç‰Œå¦‚ä¸‹: ";//ä½ çš„é¡¯ç¤ºæ‰‹ç‰Œ
 		for (int g = 0; g < 2; g++)
 		{
-			cout << " " << p1card[g].getPokercard() << " ";
-			pokercolor(p1card[g].getCardcolor());
+			cout << g + 1 << ". ";
+			cout  << ranks[p1card[g].getPokercard()] << " ";
+			cout<<suits[p1card[g].getCardcolor()];
+			cout << " ";
 			cardArray[g] = p1card[g];
 		}
-		cout << " ¤½µP¬° ";//Åã¥Ü¤½µP
+		cout << " å…¬ç‰Œå¦‚ä¸‹: ";//é¡¯ç¤ºå…¬ç‰Œ
 		for (int a = 0; a < 5; a++)
 		{
-			cout << " " << publiccard[a].getPokercard() << " ";
-			pokercolor(publiccard[a].getCardcolor());
+			cout << a+3 << ". ";
+			cout<< ranks[publiccard[a].getPokercard()] << " ";
+			cout << suits[publiccard[a].getCardcolor()];
+			cout << " ";
 			cardArray[a + 2] = publiccard[a];
 		}
 		cout << endl;
 		cout << endl;
-		cout << "¤âµP+¤½¦@µP¦@7±i,¿é¤J¼Æ¦r¿ï¾Ü§A­nªºµP, ²Õ¦¨5±iµPªºµP²Õ¡]¥i¿ï5¦¸¡^" << endl;
-		cout << ",³Ì¥ª°¼½s¸¹¬°1¨ì³Ì¥k°¼½s¸¹¬°7,¥Ñ¥ª¨ì¥k¥dµPªº½s¸¹±q½s¸¹1¨ì½s¸¹7" << endl;
+		cout << "æ‰‹ç‰Œ+å…¬å…±ç‰Œå…±7å¼µ,è¼¸å…¥æ•¸å­—é¸æ“‡ä½ è¦çš„ç‰Œ, çµ„æˆ5å¼µç‰Œçš„ç‰Œçµ„ï¼ˆå¯é¸5æ¬¡ï¼‰" << endl;
+		cout << ",æœ€å·¦å´ç·¨è™Ÿç‚º1åˆ°æœ€å³å´ç·¨è™Ÿç‚º7,ç”±å·¦åˆ°å³å¡ç‰Œçš„ç·¨è™Ÿå¾žç·¨è™Ÿ1åˆ°ç·¨è™Ÿ7" << endl;
 		for (int a = 0; a < 5; a++)
 		{	
 			cout <<endl;
-			cout << "¿é¤J½s¸¹¿ï¾Ü¼³§JµP¡]³Ñ¾lÁÙ¥i¿ï"<<5-a<<"¦¸¡^" << endl;
-			int number = 0;							//Á`¦@7±iµP±q¨ä¤¤¿ï¥X5±i²Õ¦¨µP²Õ
+			cout << "è¼¸å…¥ç·¨è™Ÿé¸æ“‡æ’²å…‹ç‰Œï¼ˆå‰©é¤˜é‚„å¯é¸"<<5-a<<"æ¬¡ï¼‰" << endl;
+			int number = 0;							//ç¸½å…±7å¼µç‰Œå¾žå…¶ä¸­é¸å‡º5å¼µçµ„æˆç‰Œçµ„
 			cin >> number;						
-			if (number >= 1 && number <= 7)		//¿é¤J¼Æ¦r¿ï¾Ü§A­nªºµP
+			if (number >= 1 && number <= 7)		//è¼¸å…¥æ•¸å­—é¸æ“‡ä½ è¦çš„ç‰Œ
 			{
 				bestArray[a] = cardArray[number-1];
 			}
 			else
 			{
-				cout << "¿ù»~,½Ð­«·s¿é¤J" << endl;
+				cout << "éŒ¯èª¤,è«‹é‡æ–°è¼¸å…¥" << endl;
 					a--;
 			}
-			cout << "¥Ø«eµP²Õ¡G";
+			cout << "ç›®å‰ç‰Œçµ„ï¼š";
 			for (int g = 0; g < 5; g++)
 			{
-				cout << " " << bestArray[g].getPokercard() << " ";
-				pokercolor(bestArray[g].getCardcolor());
+				cout << " " << ranks[bestArray[g].getPokercard()] << " ";
+				cout << suits[bestArray[g].getCardcolor()];
 			}
 		}
 		cout << endl;
 		int whichcardarray[14] = { 0 };
-		for (int a = 0; a < 5; a++)//¬Ý¼Æ¦r­þ¨Ç¦³´X±i
+		for (int a = 0; a < 5; a++)//çœ‹æ•¸å­—å“ªäº›æœ‰å¹¾å¼µ
 		{
 			int y = bestArray[a].getPokercard();
 			whichcardarray[y]++;
 		}
-		p1.setWinOrLoseValue(p1.Compare(bestArray, whichcardarray));//ª±®a1±o¨ìªºµP§Î
-		c1.setCwinOrLoseValue(c1.CCompare(publiccard));//¹q¸£±o¨ìªºµP§Î
+		p1.setWinOrLoseValue(p1.Compare(bestArray, whichcardarray));//çŽ©å®¶1å¾—åˆ°çš„ç‰Œå½¢
+		c1.setCwinOrLoseValue(c1.CCompare(publiccard));//é›»è…¦å¾—åˆ°çš„ç‰Œå½¢
 		if (p1.getWinOrLoseValue() > c1.getCwinOrLoseValue())
 		{
-			cout << "ª±®aÀò±o³Ó§Q" << endl;
-			cout << "§A²Õ¥X¤F";
-			cardname1(p1.getWinOrLoseValue());
-			cout << "¹q¸£²Õ¥X¤F"; 
-			cardname1(c1.getCwinOrLoseValue());
+			cout << "çŽ©å®¶ç²å¾—å‹åˆ©" << endl;
+			cout << "ä½ çµ„å‡ºäº†";
+			cout<<cardsname[p1.getWinOrLoseValue()];
+			cout << "é›»è…¦çµ„å‡ºäº†"; 
+			cout << cardsname[c1.getCwinOrLoseValue()];
 		}
 		if (p1.getWinOrLoseValue() < c1.getCwinOrLoseValue())
 		{
-			cout << "¹q¸£Àò±o³Ó§Q" << endl;
-			cout << "¹q¸£²Õ¥X¤F";
-			cardname1(c1.getCwinOrLoseValue());
-			cout << "§A²Õ¥X¤F";
-			cardname1(p1.getWinOrLoseValue());
+			cout << "é›»è…¦ç²å¾—å‹åˆ©" << endl;
+			cout << "é›»è…¦çµ„å‡ºäº†";
+			cout << cardsname[c1.getCwinOrLoseValue()];
+			cout << "ä½ çµ„å‡ºäº†";
+			cout << cardsname[p1.getWinOrLoseValue()];
 		}
-		if (p1.getWinOrLoseValue() == c1.getCwinOrLoseValue())//·í¬Û¦PµP§Î®É¤ñ¤j¤p
+		if (p1.getWinOrLoseValue() == c1.getCwinOrLoseValue())//ç•¶ç›¸åŒç‰Œå½¢æ™‚æ¯”å¤§å°
 		{
 			wlv=p1.Compare2(bestArray, p1.getWinOrLoseValue(),c1, whichcardarray);
-			if (wlv == 1)cout << "ª±®aÄ¹" << endl;
-			else if (wlv == 0)cout << "¹q¸£Ä¹" << endl;
-			else if (wlv == 2)cout << "¥­¤â" << endl;
+			if (wlv == 1)cout << "çŽ©å®¶è´" << endl;
+			else if (wlv == 0)cout << "é›»è…¦è´" << endl;
+			else if (wlv == 2)cout << "å¹³æ‰‹" << endl;
 			
 		}
-		cout << "¹q¸£ªº¤âµP¬° ";//§AªºÅã¥Ü¤âµP
+		cout << "é›»è…¦çš„æ‰‹ç‰Œç‚º ";//ä½ çš„é¡¯ç¤ºæ‰‹ç‰Œ
 		for (int g = 0; g < 2; g++)
 		{
-			cout << " " << c1card[g].getPokercard() << " ";
-			pokercolor(c1card[g].getCardcolor());
+			cout << " " << ranks[c1card[g].getPokercard()] << " ";
+			suits[c1card[g].getCardcolor()];
 		}
 		cout << endl;
-		cout << "¿é¤J¥ô·NÁä¹CÀ¸¶}©l©Î«ö0µ²§ô" << endl;
+		cout << "è¼¸å…¥ä»»æ„æ•¸å­—éŠæˆ²é–‹å§‹æˆ–æŒ‰0çµæŸ" << endl;
 		cin >> bet;
 	}
 	if (bet == 0)
 	{
-		cout << "¹CÀ¸µ²§ô" << endl;
+		cout << "éŠæˆ²çµæŸ" << endl;
 	}
 }
